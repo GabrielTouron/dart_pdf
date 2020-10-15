@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-export 'src/asset_utils.dart';
 export 'src/callback.dart';
+export 'src/page_format.dart';
 export 'src/pdf_preview.dart';
 export 'src/printer.dart';
 export 'src/printing.dart';
 export 'src/printing_info.dart';
 export 'src/raster.dart';
-export 'src/widget_wrapper.dart';

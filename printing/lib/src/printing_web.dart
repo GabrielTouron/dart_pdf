@@ -26,14 +26,14 @@ import 'dart:ui';
 
 import 'package:flutter/rendering.dart' show Rect;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:image/image.dart' as im;
-import 'package:pdf/pdf.dart';
+
 import 'package:printing/src/pdfjs.dart';
 import 'package:printing/src/printer.dart';
 import 'package:printing/src/raster.dart';
 
 import 'callback.dart';
 import 'interface.dart';
+import 'page_format.dart';
 import 'printing_info.dart';
 
 /// Print plugin targetting Flutter on the Web
@@ -231,16 +231,6 @@ class _WebPdfRaster extends PdfRaster {
   Uint8List _pixels;
 
   @override
-  Uint8List get pixels {
-    if (_pixels == null) {
-      final img = asImage();
-      _pixels = img.data.buffer.asUint8List();
-    }
-
-    return _pixels;
-  }
-
-  @override
   Future<Image> toImage() {
     final comp = Completer<Image>();
     decodeImageFromPixels(
@@ -256,13 +246,5 @@ class _WebPdfRaster extends PdfRaster {
   @override
   Future<Uint8List> toPng() async {
     return png;
-  }
-
-  @override
-  im.Image asImage() {
-    if (_pixels != null) {
-      return super.asImage();
-    }
-    return im.PngDecoder().decodeImage(png);
   }
 }

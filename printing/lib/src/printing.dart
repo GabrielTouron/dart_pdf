@@ -19,10 +19,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/rendering.dart' show Rect, Offset;
 import 'package:meta/meta.dart';
-import 'package:pdf/pdf.dart';
 
 import 'callback.dart';
 import 'interface.dart';
+import 'page_format.dart';
 import 'printer.dart';
 import 'printing_info.dart';
 import 'raster.dart';
@@ -91,18 +91,12 @@ mixin Printing {
 
   /// Displays a platform popup to share the Pdf document to another application
   static Future<bool> sharePdf({
-    @Deprecated('use bytes with document.save()') PdfDocument document,
     Uint8List bytes,
     String filename = 'document.pdf',
     Rect bounds,
   }) {
-    assert(document != null || bytes != null);
-    assert(!(document == null && bytes == null));
+    assert(bytes != null);
     assert(filename != null);
-
-    if (document != null) {
-      bytes = document.save();
-    }
 
     bounds ??= Rect.fromCircle(center: Offset.zero, radius: 10);
 
@@ -164,20 +158,5 @@ mixin Printing {
     assert(dpi > 0);
 
     return PrintingPlatform.instance.raster(document, pages, dpi);
-  }
-
-  /// Prints a [PdfDocument] or a pdf stream to a local printer
-  /// using the platform UI
-  @Deprecated('use Printing.layoutPdf(onLayout: (_) => document.save());')
-  static Future<void> printPdf({
-    @Deprecated('use bytes with document.save()') PdfDocument document,
-    Uint8List bytes,
-  }) async {
-    assert(document != null || bytes != null);
-    assert(!(document == null && bytes == null));
-
-    await layoutPdf(
-        onLayout: (PdfPageFormat format) =>
-            document != null ? document.save() : bytes);
   }
 }

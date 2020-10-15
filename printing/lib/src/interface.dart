@@ -18,11 +18,12 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/rendering.dart' show Rect;
-import 'package:pdf/pdf.dart';
+
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'callback.dart';
 import 'method_channel.dart';
+import 'page_format.dart';
 import 'printer.dart';
 import 'printing_info.dart';
 import 'raster.dart';

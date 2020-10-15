@@ -2,10 +2,9 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
 
 import 'callback.dart';
+import 'page_format.dart';
 import 'printing.dart';
 import 'printing_info.dart';
 import 'raster.dart';
@@ -336,27 +335,6 @@ class _PdfPreviewState extends State<PdfPreview> {
         );
       }
     }
-
-    assert(() {
-      if (actions.isNotEmpty) {
-        actions.add(
-          Switch(
-            activeColor: Colors.red,
-            value: pw.Document.debug,
-            onChanged: (bool value) {
-              setState(
-                () {
-                  pw.Document.debug = value;
-                  _raster();
-                },
-              );
-            },
-          ),
-        );
-      }
-
-      return true;
-    }());
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

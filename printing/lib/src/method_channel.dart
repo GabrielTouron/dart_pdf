@@ -19,10 +19,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/rendering.dart' show Rect;
 import 'package:flutter/services.dart';
-import 'package:pdf/pdf.dart';
 
 import 'callback.dart';
 import 'interface.dart';
+import 'page_format.dart';
 import 'print_job.dart';
 import 'printer.dart';
 import 'printing_info.dart';
